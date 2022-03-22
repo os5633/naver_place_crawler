@@ -1,0 +1,19 @@
+name: Check ESLint
+
+on: [push]
+jobs:
+  one:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init node env
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: npm i --force
+      - name: Check ESLint
+        run: npm run fix:lint
+        env:
+          CI: true

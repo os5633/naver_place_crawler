@@ -1,0 +1,19 @@
+name: Build product
+
+on: [push]
+jobs:
+  one:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Init node env
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: npm i --force
+      - name: Build product
+        run: npm run build
+        env:
+          CI: true
